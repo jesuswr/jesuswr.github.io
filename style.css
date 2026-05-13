@@ -483,6 +483,19 @@ input[type="number"]:focus { border-color: #e0833a; }
   transition: background 0.1s, border-color 0.1s;
 }
 
+.btn-ghost.active-selection {
+  background: #e0833a;
+  color: #0e0e10;
+  border-color: #e0833a;
+}
+
+#interval-selector {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 0.5rem;
+  width: 100%;
+}
+
 .interval-btn:hover { border-color: #e0833a; background: #1a1614; }
 
 .interval-btn.flash-correct { background: rgba(40, 210, 80, 0.25) !important; border-color: rgba(40, 210, 80, 0.5) !important; }
