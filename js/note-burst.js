@@ -86,6 +86,7 @@ function startNoteBurst() {
   state.score = 0;
   state.locked = false;
   state.startTime = null;
+  document.getElementById('string-label').textContent = state.stringId;
   renderFretboard();
   updatePrompt();
   showView('playing-view');
