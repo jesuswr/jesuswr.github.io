@@ -345,6 +345,8 @@ input[type="number"]:focus { border-color: #e0833a; }
 .fretboard {
   position: relative;
   display: flex;
+  flex: 1;
+  min-width: 0;
   border-radius: 8px;
   overflow: hidden;
   border-left: 7px solid #ddd8c0;
