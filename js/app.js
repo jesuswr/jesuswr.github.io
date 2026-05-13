@@ -29,7 +29,6 @@ document.getElementById('burst-results-home').addEventListener('click', () => sh
 
 // ─── Ear training ────────────────────────────────────────
 document.getElementById('ear-back').addEventListener('click', () => showView('home-view'));
-document.getElementById('ear-start-btn').addEventListener('click', startEarTraining);
 document.getElementById('replay-btn').addEventListener('click', playCurrentInterval);
 document.getElementById('ear-retry-btn').addEventListener('click', () => showView('ear-setup-view'));
 document.getElementById('ear-results-home').addEventListener('click', () => showView('home-view'));
