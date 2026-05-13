@@ -29,17 +29,7 @@
 
     .hidden { display: none !important; }
 
-    /* ─── Setup view ─── */
-    #setup-view {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2.5rem;
-      text-align: center;
-    }
-
-    .brand { display: flex; flex-direction: column; gap: 0.5rem; }
-
+    /* ─── Shared ─── */
     h1 {
       font-size: clamp(1.8rem, 6vw, 2.6rem);
       font-weight: 800;
@@ -53,13 +43,40 @@
       letter-spacing: 0.04em;
     }
 
-    .controls {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem 1.5rem;
-      align-items: flex-end;
-      justify-content: center;
+    .btn {
+      background: #e0833a;
+      color: #0e0e10;
+      border: none;
+      border-radius: 6px;
+      padding: 0.65rem 2.4rem;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.12s, transform 0.08s;
     }
+
+    .btn:hover { background: #f0953c; }
+    .btn:active { background: #c86e28; transform: scale(0.97); }
+
+    .back-btn {
+      background: none;
+      border: none;
+      color: #5a5048;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      align-self: flex-start;
+    }
+
+    .back-btn:hover { color: #e8dcc8; }
 
     label {
       display: flex;
@@ -89,48 +106,11 @@
     select:focus,
     input[type="number"]:focus { border-color: #e0833a; }
 
-    .btn {
-      background: #e0833a;
-      color: #0e0e10;
-      border: none;
-      border-radius: 6px;
-      padding: 0.65rem 2.4rem;
-      font-size: 1rem;
-      font-weight: 800;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: background 0.12s, transform 0.08s;
-    }
-
-    .btn:hover { background: #f0953c; }
-    .btn:active { background: #c86e28; transform: scale(0.97); }
-
-    /* ─── Playing view ─── */
-    #playing-view {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-
     .prompt-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-    }
-
-    .find-note {
-      font-size: clamp(1.2rem, 4.5vw, 1.7rem);
-      font-weight: 600;
-      color: #7a6a5a;
-    }
-
-    .find-note span {
-      color: #f1e6c8;
-      font-size: clamp(1.9rem, 7vw, 3rem);
-      font-weight: 800;
-      margin-left: 0.1em;
     }
 
     .prompt-right {
@@ -189,13 +169,177 @@
       cursor: pointer;
     }
 
+    .score {
+      font-size: clamp(3rem, 12vw, 5rem);
+      font-weight: 800;
+      color: #e0833a;
+      line-height: 1;
+    }
+
+    .score-sub {
+      font-size: 0.85rem;
+      color: #5a5048;
+      margin-top: 0.35rem;
+      letter-spacing: 0.04em;
+    }
+
+    .time-display {
+      font-size: clamp(1.4rem, 5vw, 2rem);
+      font-weight: 700;
+      color: #7a6a5a;
+      letter-spacing: 0.02em;
+    }
+
+    /* ─── Results shared ─── */
+    .results-view-el {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 300px;
+    }
+
+    .results-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.8rem;
+      text-align: center;
+    }
+
+    .results-inner h2 {
+      font-size: clamp(1rem, 3.5vw, 1.4rem);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #6a5a4a;
+    }
+
+    .results-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: #7a6a5a;
+      border: 1.5px solid #3a3530;
+      border-radius: 6px;
+      padding: 0.65rem 1.6rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: color 0.12s, border-color 0.12s;
+    }
+
+    .btn-ghost:hover { color: #e8dcc8; border-color: #6a6050; }
+
+    /* ─── Home view ─── */
+    #home-view {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3rem;
+      text-align: center;
+    }
+
+    .brand { display: flex; flex-direction: column; gap: 0.5rem; }
+
+    .mode-cards {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .mode-card {
+      flex: 1;
+      min-width: 180px;
+      background: #18161a;
+      border: 1.5px solid #3a3530;
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      color: #e8dcc8;
+      transition: border-color 0.15s, background 0.15s;
+      text-align: center;
+    }
+
+    .mode-card:hover {
+      border-color: #e0833a;
+      background: #1a1614;
+    }
+
+    .mode-card svg {
+      width: 38px;
+      height: 38px;
+      color: #e0833a;
+    }
+
+    .mode-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+    }
+
+    .mode-desc {
+      font-size: 0.78rem;
+      color: #7a6a5a;
+      line-height: 1.4;
+    }
+
+    /* ─── Note burst setup ─── */
+    #setup-view {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.5rem;
+      text-align: center;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 1.5rem;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    /* ─── Note burst playing ─── */
+    #playing-view {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .find-note {
+      font-size: clamp(1.2rem, 4.5vw, 1.7rem);
+      font-weight: 600;
+      color: #7a6a5a;
+    }
+
+    .find-note span {
+      color: #f1e6c8;
+      font-size: clamp(1.9rem, 7vw, 3rem);
+      font-weight: 800;
+      margin-left: 0.1em;
+    }
+
     /* ─── Fretboard ─── */
     .fretboard {
       position: relative;
       display: flex;
       border-radius: 8px;
       overflow: hidden;
-      border-left: 7px solid #ddd8c0; /* nut */
+      border-left: 7px solid #ddd8c0;
       background: linear-gradient(175deg, #3d2410 0%, #2e1a0c 55%, #231309 100%);
       box-shadow:
         0 2px 0 #1a0e06,
@@ -204,7 +348,6 @@
       user-select: none;
     }
 
-    /* String */
     .fretboard::before {
       content: '';
       position: absolute;
@@ -233,7 +376,6 @@
     }
 
     .fret-cell:last-child { border-right: none; }
-
     .fret-cell:hover { background-color: rgba(255, 235, 190, 0.07); }
 
     .note-label {
@@ -250,7 +392,6 @@
       line-height: 1;
     }
 
-    /* Position markers */
     .fret-cell[data-fret="3"]::after,
     .fret-cell[data-fret="5"]::after,
     .fret-cell[data-fret="7"]::after,
@@ -267,66 +408,114 @@
       z-index: 0;
     }
 
-    /* Feedback flashes */
     .fret-cell.flash-correct { background-color: rgba(40, 210, 80, 0.42) !important; }
     .fret-cell.flash-wrong   { background-color: rgba(220, 45, 45, 0.42) !important; }
     .fret-cell.flash-hint    { background-color: rgba(40, 210, 80, 0.20) !important; }
 
-    /* ─── Results view ─── */
-    #results-view {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 300px;
-    }
-
-    .results-inner {
+    /* ─── Ear training setup ─── */
+    #ear-setup-view {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 1.8rem;
+      gap: 2.5rem;
       text-align: center;
     }
 
-    h2 {
-      font-size: clamp(1rem, 3.5vw, 1.4rem);
+    /* ─── Ear training playing ─── */
+    #ear-playing-view {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .listen-prompt {
+      font-size: clamp(1.2rem, 4.5vw, 1.7rem);
       font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #6a5a4a;
-    }
-
-    .score {
-      font-size: clamp(3rem, 12vw, 5rem);
-      font-weight: 800;
-      color: #e0833a;
-      line-height: 1;
-    }
-
-    .score-sub {
-      font-size: 0.85rem;
-      color: #5a5048;
-      margin-top: 0.35rem;
-      letter-spacing: 0.04em;
-    }
-
-    .time-display {
-      font-size: clamp(1.4rem, 5vw, 2rem);
-      font-weight: 700;
       color: #7a6a5a;
-      letter-spacing: 0.02em;
     }
+
+    .replay-btn {
+      background: #18161a;
+      border: 1.5px solid #3a3530;
+      border-radius: 6px;
+      color: #a09080;
+      padding: 0.6rem 1.4rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color 0.12s, color 0.12s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .replay-btn:hover { border-color: #6a6050; color: #e8dcc8; }
+
+    .interval-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .interval-btn {
+      background: #18161a;
+      border: 1.5px solid #3a3530;
+      border-radius: 8px;
+      padding: 1.6rem 1rem;
+      color: #e8dcc8;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.1s, border-color 0.1s;
+    }
+
+    .interval-btn:hover { border-color: #e0833a; background: #1a1614; }
+
+    .interval-btn.flash-correct { background: rgba(40, 210, 80, 0.25) !important; border-color: rgba(40, 210, 80, 0.5) !important; }
+    .interval-btn.flash-wrong   { background: rgba(220, 45, 45, 0.25) !important; border-color: rgba(220, 45, 45, 0.5) !important; }
+    .interval-btn.flash-hint    { background: rgba(40, 210, 80, 0.12) !important; border-color: rgba(40, 210, 80, 0.3) !important; }
   </style>
 </head>
 <body>
   <div class="app">
 
-    <!-- Setup -->
-    <div id="setup-view" class="view">
+    <!-- Home -->
+    <div id="home-view" class="view">
       <div class="brand">
         <h1>Fretboard Trainer</h1>
-        <p class="subtitle">Identify notes on the guitar fretboard</p>
+        <p class="subtitle">Guitar practice tools</p>
       </div>
+      <div class="mode-cards">
+        <button class="mode-card" id="go-burst">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <rect x="2" y="7" width="20" height="10" rx="1.5"/>
+            <line x1="7"  y1="7" x2="7"  y2="17"/>
+            <line x1="12" y1="7" x2="12" y2="17"/>
+            <line x1="17" y1="7" x2="17" y2="17"/>
+            <line x1="2"  y1="12" x2="22" y2="12"/>
+          </svg>
+          <div class="mode-title">Note Burst</div>
+          <div class="mode-desc">Find notes on the fretboard as fast as you can</div>
+        </button>
+        <button class="mode-card" id="go-ear">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 18v-6a9 9 0 0118 0v6"/>
+            <path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3z"/>
+            <path d="M3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/>
+          </svg>
+          <div class="mode-title">Ear Training</div>
+          <div class="mode-desc">Identify musical intervals by ear</div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Note burst: setup -->
+    <div id="setup-view" class="view hidden">
+      <button class="back-btn" id="burst-back">&#8592; Back</button>
       <div class="controls">
         <label>String
           <select id="string-select">
@@ -345,7 +534,7 @@
       </div>
     </div>
 
-    <!-- Playing -->
+    <!-- Note burst: playing -->
     <div id="playing-view" class="view hidden">
       <div class="prompt-row">
         <div class="find-note">Find:&nbsp;<span id="current-note"></span></div>
@@ -364,22 +553,78 @@
       <div class="fretboard" id="fretboard"></div>
     </div>
 
-    <!-- Results -->
-    <div id="results-view" class="view hidden">
+    <!-- Note burst: results -->
+    <div id="results-view" class="view hidden results-view-el">
       <div class="results-inner">
-        <h2>Session Complete</h2>
+        <h2>Note Burst Complete</h2>
         <div>
           <div class="score" id="score-text"></div>
           <div class="score-sub">correct</div>
         </div>
         <div class="time-display" id="time-text"></div>
-        <button class="btn" id="retry-btn">Try Again</button>
+        <div class="results-actions">
+          <button class="btn-ghost" id="burst-results-home">Home</button>
+          <button class="btn" id="retry-btn">Try Again</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ear training: setup -->
+    <div id="ear-setup-view" class="view hidden">
+      <button class="back-btn" id="ear-back">&#8592; Back</button>
+      <div class="controls">
+        <label>Rounds
+          <input type="number" id="ear-length-input" value="10" min="1" max="50">
+        </label>
+        <button class="btn" id="ear-start-btn">Start</button>
+      </div>
+    </div>
+
+    <!-- Ear training: playing -->
+    <div id="ear-playing-view" class="view hidden">
+      <div class="prompt-row">
+        <div class="listen-prompt">Which interval?</div>
+        <div class="prompt-right">
+          <div class="progress" id="ear-progress-text"></div>
+          <div class="volume-control">
+            <svg class="vol-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M8 1.5L4.5 5H2a.5.5 0 00-.5.5v5a.5.5 0 00.5.5h2.5L8 14.5V1.5z"/>
+              <path d="M10.5 5.5a3 3 0 010 5M12.8 3.2a6 6 0 010 9.6"
+                    stroke="currentColor" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+            </svg>
+            <input type="range" class="volume-slider" id="ear-volume-slider" min="0" max="1" step="0.02" value="0.7">
+          </div>
+        </div>
+      </div>
+      <button class="replay-btn" id="replay-btn">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 1a7 7 0 100 14A7 7 0 008 1zM6.5 5.5l4 2.5-4 2.5V5.5z"/>
+        </svg>
+        Play again
+      </button>
+      <div class="interval-grid" id="interval-grid"></div>
+    </div>
+
+    <!-- Ear training: results -->
+    <div id="ear-results-view" class="view hidden results-view-el">
+      <div class="results-inner">
+        <h2>Ear Training Complete</h2>
+        <div>
+          <div class="score" id="ear-score-text"></div>
+          <div class="score-sub">correct</div>
+        </div>
+        <div class="time-display" id="ear-time-text"></div>
+        <div class="results-actions">
+          <button class="btn-ghost" id="ear-results-home">Home</button>
+          <button class="btn" id="ear-retry-btn">Try Again</button>
+        </div>
       </div>
     </div>
 
   </div>
 
   <script>
+    // ─── Note data ────────────────────────────────────────────
     const STRINGS = {
       E: ['E','F','F#','G','G#','A','A#','B','C','C#','D','D#'],
       A: ['A','A#','B','C','C#','D','D#','E','F','F#','G','G#'],
@@ -389,16 +634,22 @@
       e: ['E','F','F#','G','G#','A','A#','B','C','C#','D','D#']
     };
 
-    // Open-string frequencies in standard tuning
     const OPEN_FREQ = { E: 82.41, A: 110.00, D: 146.83, G: 196.00, B: 246.94, e: 329.63 };
 
+    const INTERVALS = [
+      { id: 'P4', label: 'Perfect 4th', ratio: 4 / 3 },
+      { id: 'P5', label: 'Perfect 5th', ratio: 3 / 2 }
+    ];
+
+    // ─── State ───────────────────────────────────────────────
     const state = {
-      stringId: 'E',
-      length: 10,
-      sequence: [],
-      index: 0,
-      score: 0,
-      locked: false
+      stringId: 'E', length: 10, sequence: [],
+      index: 0, score: 0, locked: false, startTime: null
+    };
+
+    const earState = {
+      length: 10, sequence: [], baseFreqs: [],
+      index: 0, score: 0, locked: false, startTime: null
     };
 
     // ─── Audio ───────────────────────────────────────────────
@@ -416,14 +667,14 @@
       return audioCtx;
     }
 
+    // Karplus-Strong pluck for note burst
     function pluck(stringId, fret) {
       const ctx = getCtx();
       const freq = OPEN_FREQ[stringId] * Math.pow(2, fret / 12);
       const sr = ctx.sampleRate;
-      const N = Math.round(sr / freq);           // delay line length
-      const totalSamples = Math.round(sr * 2.5); // 2.5 s of output
+      const N = Math.round(sr / freq);
+      const totalSamples = Math.round(sr * 2.5);
 
-      // Karplus-Strong: noise burst → averaging filter loop
       const ring = new Float32Array(N);
       for (let i = 0; i < N; i++) ring[i] = Math.random() * 2 - 1;
 
@@ -432,7 +683,7 @@
       for (let i = 0; i < totalSamples; i++) {
         const next = (p + 1) % N;
         out[i] = ring[p];
-        ring[p] = 0.498 * (ring[p] + ring[next]); // lowpass + decay
+        ring[p] = 0.498 * (ring[p] + ring[next]);
         p = next;
       }
 
@@ -442,6 +693,32 @@
       src.buffer = buf;
       src.connect(gainNode);
       src.start();
+    }
+
+    // Sustained triangle tone for ear training
+    function playTone(freq, startTime, duration) {
+      const ctx = getCtx();
+      const osc = ctx.createOscillator();
+      const env = ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.value = freq;
+      env.gain.setValueAtTime(0, startTime);
+      env.gain.linearRampToValueAtTime(0.4, startTime + 0.04);
+      env.gain.setValueAtTime(0.4, startTime + duration - 0.08);
+      env.gain.linearRampToValueAtTime(0, startTime + duration);
+      osc.connect(env);
+      env.connect(gainNode);
+      osc.start(startTime);
+      osc.stop(startTime + duration);
+    }
+
+    function playCurrentInterval() {
+      const ctx = getCtx();
+      const interval = INTERVALS.find(i => i.id === earState.sequence[earState.index]);
+      const base = earState.baseFreqs[earState.index];
+      const now = ctx.currentTime;
+      playTone(base, now, 0.75);
+      playTone(base * interval.ratio, now + 0.9, 0.75);
     }
 
     // ─── UI helpers ──────────────────────────────────────────
@@ -457,14 +734,14 @@
       setTimeout(() => el.classList.remove(cls), ms);
     }
 
-    function updatePrompt() {
-      document.getElementById('current-note').textContent =
-        STRINGS[state.stringId][state.sequence[state.index]];
-      document.getElementById('progress-text').textContent =
-        `${state.index + 1} / ${state.length}`;
+    function flashIntervalBtn(id, cls, ms) {
+      const el = document.querySelector(`.interval-btn[data-interval="${id}"]`);
+      if (!el) return;
+      el.classList.add(cls);
+      setTimeout(() => el.classList.remove(cls), ms);
     }
 
-    // ─── Game logic ──────────────────────────────────────────
+    // ─── Note burst ──────────────────────────────────────────
     function buildSequence(len) {
       const seq = [];
       for (let i = 0; i < len; i++) {
@@ -475,11 +752,18 @@
       return seq;
     }
 
+    function updatePrompt() {
+      document.getElementById('current-note').textContent =
+        STRINGS[state.stringId][state.sequence[state.index]];
+      document.getElementById('progress-text').textContent =
+        `${state.index + 1} / ${state.length}`;
+    }
+
     function handleAnswer(fret) {
       if (state.locked) return;
       state.locked = true;
-
       if (!state.startTime) state.startTime = Date.now();
+
       pluck(state.stringId, fret);
 
       const expected = state.sequence[state.index];
@@ -496,8 +780,7 @@
         state.index++;
         if (state.index >= state.length) {
           const elapsed = ((Date.now() - state.startTime) / 1000).toFixed(1);
-          document.getElementById('score-text').textContent =
-            `${state.score} / ${state.length}`;
+          document.getElementById('score-text').textContent = `${state.score} / ${state.length}`;
           document.getElementById('time-text').textContent = `${elapsed}s`;
           showView('results-view');
         } else {
@@ -522,7 +805,75 @@
       });
     }
 
+    // ─── Ear training ────────────────────────────────────────
+    function buildEarSequence(len) {
+      const ids = INTERVALS.map(i => i.id);
+      const seq = [], freqs = [];
+      for (let i = 0; i < len; i++) {
+        let id;
+        do { id = ids[Math.floor(Math.random() * ids.length)]; }
+        while (i > 0 && id === seq[i - 1]);
+        seq.push(id);
+        // Random base in E2–E3 range (82–165 Hz)
+        freqs.push(82.41 * Math.pow(2, Math.random()));
+      }
+      return { seq, freqs };
+    }
+
+    function updateEarProgress() {
+      document.getElementById('ear-progress-text').textContent =
+        `${earState.index + 1} / ${earState.length}`;
+    }
+
+    function renderIntervalButtons() {
+      const grid = document.getElementById('interval-grid');
+      grid.innerHTML = '';
+      INTERVALS.forEach(interval => {
+        const btn = document.createElement('button');
+        btn.className = 'interval-btn';
+        btn.dataset.interval = interval.id;
+        btn.textContent = interval.label;
+        btn.addEventListener('click', () => handleIntervalAnswer(interval.id));
+        grid.appendChild(btn);
+      });
+    }
+
+    function handleIntervalAnswer(choice) {
+      if (earState.locked) return;
+      earState.locked = true;
+      if (!earState.startTime) earState.startTime = Date.now();
+
+      const expected = earState.sequence[earState.index];
+      if (choice === expected) {
+        earState.score++;
+        flashIntervalBtn(choice, 'flash-correct', 300);
+      } else {
+        flashIntervalBtn(choice, 'flash-wrong', 300);
+        flashIntervalBtn(expected, 'flash-hint', 300);
+      }
+
+      setTimeout(() => {
+        earState.locked = false;
+        earState.index++;
+        if (earState.index >= earState.length) {
+          const elapsed = ((Date.now() - earState.startTime) / 1000).toFixed(1);
+          document.getElementById('ear-score-text').textContent = `${earState.score} / ${earState.length}`;
+          document.getElementById('ear-time-text').textContent = `${elapsed}s`;
+          showView('ear-results-view');
+        } else {
+          updateEarProgress();
+          playCurrentInterval();
+        }
+      }, 350);
+    }
+
     // ─── Event listeners ─────────────────────────────────────
+    document.getElementById('go-burst').addEventListener('click', () => showView('setup-view'));
+    document.getElementById('go-ear').addEventListener('click', () => showView('ear-setup-view'));
+
+    document.getElementById('burst-back').addEventListener('click', () => showView('home-view'));
+    document.getElementById('ear-back').addEventListener('click', () => showView('home-view'));
+
     document.getElementById('start-btn').addEventListener('click', () => {
       state.stringId = document.getElementById('string-select').value;
       state.length = Math.max(1, Math.min(50,
@@ -538,8 +889,33 @@
     });
 
     document.getElementById('retry-btn').addEventListener('click', () => showView('setup-view'));
+    document.getElementById('burst-results-home').addEventListener('click', () => showView('home-view'));
+
+    document.getElementById('ear-start-btn').addEventListener('click', () => {
+      earState.length = Math.max(1, Math.min(50,
+        parseInt(document.getElementById('ear-length-input').value, 10) || 10));
+      const { seq, freqs } = buildEarSequence(earState.length);
+      earState.sequence = seq;
+      earState.baseFreqs = freqs;
+      earState.index = 0;
+      earState.score = 0;
+      earState.locked = false;
+      earState.startTime = null;
+      renderIntervalButtons();
+      updateEarProgress();
+      showView('ear-playing-view');
+      playCurrentInterval();
+    });
+
+    document.getElementById('replay-btn').addEventListener('click', playCurrentInterval);
+    document.getElementById('ear-retry-btn').addEventListener('click', () => showView('ear-setup-view'));
+    document.getElementById('ear-results-home').addEventListener('click', () => showView('home-view'));
 
     document.getElementById('volume-slider').addEventListener('input', e => {
+      if (gainNode) gainNode.gain.value = parseFloat(e.target.value);
+    });
+
+    document.getElementById('ear-volume-slider').addEventListener('input', e => {
       if (gainNode) gainNode.gain.value = parseFloat(e.target.value);
     });
   </script>
