@@ -309,6 +309,13 @@
       margin-top: 0.35rem;
       letter-spacing: 0.04em;
     }
+
+    .time-display {
+      font-size: clamp(1.4rem, 5vw, 2rem);
+      font-weight: 700;
+      color: #7a6a5a;
+      letter-spacing: 0.02em;
+    }
   </style>
 </head>
 <body>
@@ -365,6 +372,7 @@
           <div class="score" id="score-text"></div>
           <div class="score-sub">correct</div>
         </div>
+        <div class="time-display" id="time-text"></div>
         <button class="btn" id="retry-btn">Try Again</button>
       </div>
     </div>
@@ -471,28 +479,31 @@
       if (state.locked) return;
       state.locked = true;
 
+      if (!state.startTime) state.startTime = Date.now();
       pluck(state.stringId, fret);
 
       const expected = state.sequence[state.index];
       if (fret === expected) {
         state.score++;
-        flashCell(fret, 'flash-correct', 600);
+        flashCell(fret, 'flash-correct', 300);
       } else {
-        flashCell(fret, 'flash-wrong', 600);
-        flashCell(expected, 'flash-hint', 600);
+        flashCell(fret, 'flash-wrong', 300);
+        flashCell(expected, 'flash-hint', 300);
       }
 
       setTimeout(() => {
         state.locked = false;
         state.index++;
         if (state.index >= state.length) {
+          const elapsed = ((Date.now() - state.startTime) / 1000).toFixed(1);
           document.getElementById('score-text').textContent =
             `${state.score} / ${state.length}`;
+          document.getElementById('time-text').textContent = `${elapsed}s`;
           showView('results-view');
         } else {
           updatePrompt();
         }
-      }, 700);
+      }, 350);
     }
 
     function renderFretboard() {
@@ -520,6 +531,7 @@
       state.index = 0;
       state.score = 0;
       state.locked = false;
+      state.startTime = null;
       renderFretboard();
       updatePrompt();
       showView('playing-view');
