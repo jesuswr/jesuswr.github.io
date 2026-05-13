@@ -101,31 +101,18 @@
     <!-- Ear training: setup -->
     <div id="ear-setup-view" class="view hidden">
       <button class="back-btn" id="ear-back">&#8592; Back</button>
-      <div class="controls" style="flex-direction: column; align-items: center;">
-      <label>Select Intervals (Min 2)</label>
-      <div id="interval-selector" class="interval-grid" style="margin-bottom: 1rem;">
-      <!-- JavaScript will populate this -->
-      </div>
-      <div class="prompt-row" style="gap: 2rem;">
-        <label>Rounds
-        <input type="number" id="ear-length-input" value="10" min="1" max="50">
-        </label>
-        <button class="btn" id="ear-start-btn">Start</button>
-      </div>
+      <div class="ear-setup-controls">
+        <label class="ear-setup-label">Select Intervals</label>
+        <div id="interval-selector"></div>
+        <p id="interval-error" class="interval-error"></p>
+        <div class="ear-setup-row">
+          <label>Rounds
+            <input type="number" id="ear-length-input" value="10" min="1" max="50">
+          </label>
+          <button class="btn" id="ear-start-btn">Start</button>
+        </div>
       </div>
     </div>
-    
-    <!-- 
-    Legacy ear training
-    <div id="ear-setup-view" class="view hidden">
-      <button class="back-btn" id="ear-back">&#8592; Back</button>
-      <div class="controls">
-        <label>Rounds
-          <input type="number" id="ear-length-input" value="10" min="1" max="50">
-        </label>
-        <button class="btn" id="ear-start-btn">Start</button>
-      </div>
-    </div> -->
 
     <!-- Ear training: playing -->
     <div id="ear-playing-view" class="view hidden">
