@@ -26,43 +26,14 @@ const earState = {
   activeIntervals: []
 };
 
-// FM synthesis — piano-like pluck
-function playPiano(freq, startTime, duration) {
-  const ctx = getCtx();
-  const out = ctx.createGain();
-  const osc = ctx.createOscillator();
-  const modulator = ctx.createOscillator();
-  const modGain = ctx.createGain();
-
-  osc.type = 'sine';
-  modulator.type = 'sine';
-  modulator.frequency.value = freq * 2;
-  modGain.gain.setValueAtTime(freq * 2, startTime);
-  modGain.gain.exponentialRampToValueAtTime(0.01, startTime + duration);
-
-  out.gain.setValueAtTime(0, startTime);
-  out.gain.linearRampToValueAtTime(0.5, startTime + 0.01);
-  out.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
-
-  modulator.connect(modGain);
-  modGain.connect(osc.frequency);
-  osc.connect(out);
-  out.connect(gainNode);
-
-  osc.start(startTime);
-  modulator.start(startTime);
-  osc.stop(startTime + duration);
-  modulator.stop(startTime + duration);
-}
-
 function playCurrentInterval() {
   const ctx = getCtx();
   const interval = ALL_INTERVALS.find(i => i.id === earState.sequence[earState.index]);
   const base = earState.baseFreqs[earState.index];
   const ratio = Math.pow(2, interval.semitones / 12);
   const now = ctx.currentTime;
-  playPiano(base, now, 1.5);
-  playPiano(base * ratio, now + 0.8, 1.5);
+  pluckFreq(base, now);
+  pluckFreq(base * ratio, now + 1.5);
 }
 
 function renderSelectionGrid() {
