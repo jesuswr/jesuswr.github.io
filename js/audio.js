@@ -40,6 +40,32 @@ function pluck(stringId, fret) {
   src.start();
 }
 
+function pluckFreq(freq, startTime) {
+  const ctx = getCtx();
+  const sr = ctx.sampleRate;
+  const N = Math.round(sr / freq);
+  const totalSamples = Math.round(sr * 2.5);
+
+  const ring = new Float32Array(N);
+  for (let i = 0; i < N; i++) ring[i] = Math.random() * 2 - 1;
+
+  const out = new Float32Array(totalSamples);
+  let p = 0;
+  for (let i = 0; i < totalSamples; i++) {
+    const next = (p + 1) % N;
+    out[i] = ring[p];
+    ring[p] = 0.498 * (ring[p] + ring[next]);
+    p = next;
+  }
+
+  const buf = ctx.createBuffer(1, totalSamples, sr);
+  buf.copyToChannel(out, 0);
+  const src = ctx.createBufferSource();
+  src.buffer = buf;
+  src.connect(gainNode);
+  src.start(startTime);
+}
+
 // Sustained triangle tone — used by ear training
 function playTone(freq, startTime, duration) {
   const ctx = getCtx();
